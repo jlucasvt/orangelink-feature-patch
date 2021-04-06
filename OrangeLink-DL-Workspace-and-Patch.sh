@@ -67,8 +67,8 @@ echo "Downloading the patch files into exsiting Workspace folder.."
         echo  "Looks like your in a Workspace root or somewhere that we can patch..."
         LOOP_DIR = pwd
     else
-        echo "The Current Directory you are running this script from does not have a rileylink_ios Sub Folder"
-        echo "You need to run this script from inside a Workspace Project root folder that has a rileylink_ios Sub Folder"
+        echo "The Current Directory you are running this script from DOES NOT have a rileylink_ios SubFolder"
+        echo "You need to run this script from INSIDE a Workspace Project root folder that has a rileylink_ios SubFolder"
         exit
     fi
 ;;
