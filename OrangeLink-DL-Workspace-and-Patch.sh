@@ -60,13 +60,21 @@ git remote -v
 ;;
 
 *)
-echo -n "Downloading the patch files into the current folder.. I hope you are at the root of your workspace.."
-LOOP_DIR = pwd
+echo "Downloading the patch files into exsiting Workspace folder.."
+
+    if [ -d rileylink_ios ]
+    then
+        echo  "Looks like your in a Workspace root or somewhere that we can patch..."
+        LOOP_DIR = pwd
+    else
+        echo "The Current Directory you are running this script from does not have a rileylink_ios Sub Folder"
+        echo "You need to run this script from inside a Workspace Project root folder that has a rileylink_ios Sub Folder"
+        exit
+    fi
 ;;
 esac
 
 #PATCHING
-# Should add code to see if we can see the rileylink_ios folder from here..
 
 echo Download OrangeLink Patch..
 curl "https://codeload.github.com/jlucasvt/orangelink-feature-patch/zip/refs/heads/main" -O -J -L
