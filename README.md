@@ -5,7 +5,7 @@ What does this patch do
 * Adds OrangeLink Firmware Version Listing
 * Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor (These are to test the device not permanently disable the features (yet). Patience is a virtue.)
 
-Copy Paste the following script reference into your MacOS Terminal.
+Copy Paste the following script reference into your MacOS "Terminal.app".
 * Option 1,2,3 will Download a new Workspace and Patch it
 * Option 4 will Patch an existing Workspace Build Folder
 
