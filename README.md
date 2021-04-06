@@ -2,7 +2,7 @@
 What does this patch do
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
-* Adds OrangeLink Firmware Version Listing
+* Adds OrangeLink Firmware and Hardware Version Listing
 * Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor (These are to test the device not permanently disable the features (yet). Patience is a virtue.)
 
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
