@@ -8,4 +8,6 @@ Copy Paste the following script reference into your Terminal.
 
 
 The Script will prompt you to choose a Workspace Build
-The Script will download the Build, Patch The Build, Launch XCode so you can select your Signing Targets.
+The Script will download the Build
+Patch The Build
+Launch XCode so you can select your Signing Targets.
