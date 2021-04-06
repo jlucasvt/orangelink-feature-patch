@@ -1,7 +1,13 @@
 # OrangeLink Loop/FreeAPS Feature Patch
-Feature patch files and shell script to download a workspace and patch the workspace.
+What does this patch do
+* Disables MySentry Packets in Loop for OrangeLink battery life improvement for users with Medtronic x23/x54 pumps
+* Adds Battery Level Status % Display
+* Adds OrangeLink Firmware Version Listing
+* Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor (These are to test the device not permanently disable the features (yet). Patience is a virtue.)
 
 Copy Paste the following script reference into your MacOS Terminal.
+* Option 1,2,3 will Download a new Workspace and Patch it
+* Option 4 will Patch an existing Workspace Build Folder
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jlucasvt/orangelink-feature-patch/main/OrangeLink-DL-Workspace-and-Patch.sh)"
