@@ -1,5 +1,5 @@
 # OrangeLink Loop/FreeAPS Feature Patch
-What does this patch do
+### What does this patch do?
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
 * Adds OrangeLink Firmware and Hardware Version Listing
@@ -7,6 +7,7 @@ What does this patch do
 
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 
+### How do I get it?
 Copy Paste the following script reference into your MacOS "Terminal.app".
 * Option 1,2,3 will Download a new Workspace and Patch it
 * Option 4 will Patch an existing Workspace Build Folder
@@ -16,12 +17,12 @@ Copy Paste the following script reference into your MacOS "Terminal.app".
 ```
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/termpic.png?raw=true)
 
-The Script will 
+### What will the script do?
 1. Prompt you to choose a Workspace Build
 2. Download the selected Workspace to the ~Home\Downloads\BuildX-DATE\ folder
 3. Patch the Workspace with the OrangeLink Feature Patch
 4. Launch XCode so you can select your Signing Targets.
 
-Credits:
-Thanks to the Loop-n-Learn Group for providing a starting place for the Bash Script.
-Thanks to Vic Wu for all his work and the dev teams work for the patch.
+### Credits:
+* Loop-n-Learn Group for providing a starting place for the Bash Script.
+* Vic Wu for all his work and the dev teams work for the patch.
