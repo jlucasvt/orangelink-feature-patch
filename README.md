@@ -9,7 +9,7 @@
 
 ### How do I get it?
 Copy Paste the following script reference into your MacOS "Terminal.app".
-* Option 1,2,3 will Download a new Workspace and Patch it
+* Options 1,2,3 will Download a new Workspace and Patch it
 * Option 4 will Patch an existing Workspace Build Folder
 
 ```
