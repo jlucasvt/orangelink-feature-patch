@@ -89,22 +89,21 @@ echo "Patch File Root: " $PATCHFILEROOT
 WORKSPACEPATCHROOT=rileylink_ios
 echo "Workspace Patch Root: "$WORKSPACEPATCHROOT
 
-echo Replace File PumpModel.swift
+# echo Replace File PumpModel.swift
 cp -v $PATCHFILEROOT/MinimedKit/Models/*.swift $WORKSPACEPATCHROOT/MinimedKit/Models/
 
-echo Replace File RileyLinkMinimedDeviceTableViewController.swift
+# echo Replace File RileyLinkMinimedDeviceTableViewController.swift
 cp -v $PATCHFILEROOT/MinimedKitUI/*.swift $WORKSPACEPATCHROOT/MinimedKitUI/
 
-echo Replace File PeripheralManager.swift
-echo Replace File PeripheralManager+RileyLink.swift
-echo Replace File RileyLinkDevice.swift
-
+# echo Replace File PeripheralManager.swift
+# echo Replace File PeripheralManager+RileyLink.swift
+# echo Replace File RileyLinkDevice.swift
 cp -v $PATCHFILEROOT/RileyLinkBLEKit/*.swift $WORKSPACEPATCHROOT/RileyLinkBLEKit/
 
-echo Replace File RileyLinkDeviceTableViewController.swift
+# echo Replace File RileyLinkDeviceTableViewController.swift
 cp -v $PATCHFILEROOT/RileyLinkKitUI/*.swift $WORKSPACEPATCHROOT/RileyLinkKitUI/
 
-echo "Clean Up"
+echo "Cleaning Up"
 rm "orangelink-feature-patch-main.zip"
 rm -r "orangelink-feature-patch-main"
 
