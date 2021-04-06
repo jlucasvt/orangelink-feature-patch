@@ -6,6 +6,7 @@ Copy Paste the following script reference into your MacOS Terminal.
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jlucasvt/orangelink-feature-patch/main/OrangeLink-DL-Workspace-and-Patch.sh)"
 ```
+![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/termpic.png?raw=true)
 
 The Script will 
 1. Prompt you to choose a Workspace Build
