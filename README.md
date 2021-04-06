@@ -1,6 +1,6 @@
 # OrangeLink Loop/FreeAPS Feature Patch
 What does this patch do
-* Disables MySentry Packets in Loop for OrangeLink battery life improvement for users with Medtronic x23/x54 pumps
+* Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
 * Adds OrangeLink Firmware Version Listing
 * Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor (These are to test the device not permanently disable the features (yet). Patience is a virtue.)
