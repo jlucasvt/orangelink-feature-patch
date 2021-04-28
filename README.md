@@ -1,6 +1,9 @@
 # OrangeLink Loop/FreeAPS Feature Patch 2.5
 ### What does this patch do?
-Requires Orangelink Firmware v2.5
+Features Require Orangelink Firmware v2.5 
+https://getrileylink.org/product/orangelink#firmware
+
+
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
 * Adds OrangeLink Firmware and Hardware Version Listing
