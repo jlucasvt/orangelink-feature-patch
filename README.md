@@ -1,9 +1,14 @@
 # OrangeLink Loop/FreeAPS Feature Patch 2.5
 ### What does this patch do?
+Requires Orangelink Firmware v2.5
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
 * Adds OrangeLink Firmware and Hardware Version Listing
-* Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor (These are to test the device not permanently disable the features (yet). Patience is a virtue.)
+* Adds % Setting for Low Battery Alert (buzz enable/disable)
+* Adds % Setting for Low Voltage Alert (buzz enable/disable)
+* Adds Toggle to Enable/Disable Connection State 10 second Blinking LED
+* Adds Toggle to Enable/Disable Connection State Vibration Alert
+* Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor
 
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 
