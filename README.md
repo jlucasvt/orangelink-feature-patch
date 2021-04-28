@@ -1,4 +1,4 @@
-# OrangeLink Loop/FreeAPS Feature Patch
+# OrangeLink Loop/FreeAPS Feature Patch 2.5
 ### What does this patch do?
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status % Display
