@@ -5,7 +5,7 @@ Requires Orangelink Firmware v2.5
 * Adds Battery Level Status % Display
 * Adds OrangeLink Firmware and Hardware Version Listing
 * Adds % Setting for Low Battery Alert (buzz enable/disable)
-* Adds % Setting for Low Voltage Alert (buzz enable/disable)
+* Adds Voltage Setting for Low Voltage Alert (buzz enable/disable)
 * Adds Toggle to Enable/Disable Connection State 10 second Blinking LED
 * Adds Toggle to Enable/Disable Connection State Vibration Alert
 * Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor
