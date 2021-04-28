@@ -104,8 +104,8 @@ cp -v $PATCHFILEROOT/RileyLinkBLEKit/*.swift $WORKSPACEPATCHROOT/RileyLinkBLEKit
 cp -v $PATCHFILEROOT/RileyLinkKitUI/*.swift $WORKSPACEPATCHROOT/RileyLinkKitUI/
 
 echo "Cleaning Up"
-rm "orangelink-feature-patch-main.zip"
-rm -r "orangelink-feature-patch-main"
+# rm "orangelink-feature-patch-main.zip"
+# rm -r "orangelink-feature-patch-main"
 
 echo "Open XCode"
 xed .
