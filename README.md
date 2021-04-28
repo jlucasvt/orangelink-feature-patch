@@ -8,6 +8,8 @@
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 
 ### How do I get it?
+First Please update your OrangeLink to the latest Firmware..
+
 Copy Paste the following script reference into your MacOS "Terminal.app".
 * Options 1,2,3 will Download a new Workspace and Patch it
 * Option 4 will Patch an existing Workspace Build Folder
