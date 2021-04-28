@@ -33,14 +33,9 @@ public class RileyLinkDevice {
 
     // Confined to `lock`
     private var isTimerTickEnabled = true
-    
-    // Confined to `lock`
-    private var logs = ""
 
     /// Serializes access to device state
     private var lock = os_unfair_lock()
-    
-    private var fw_hw = "FW/HW"
 
     /// The queue used to serialize sessions and observe when they've drained
     private let sessionQueue: OperationQueue = {
@@ -98,23 +93,6 @@ extension RileyLinkDevice {
         manager.setCustomName(name)
     }
     
-    public func getBatterylevel() -> String {
-        do {
-            return try manager.readBatteryLevel(timeout: 1)
-        } catch {}
-        return ""
-    }
-    
-    public func orangeAction(mode: Int) {
-        add(log: "orangeAction: \(mode)")
-        manager.orangeAction(mode: RileyLinkOrangeMode(rawValue: UInt8(mode))!)
-    }
-    
-    public func orangeWritePwd() {
-        add(log: "orangeWritePwd")
-        manager.orangeWritePwd()
-    }
-    
     public func enableBLELEDs() {
         manager.setLEDMode(mode: .on)
     }
@@ -156,8 +134,6 @@ extension RileyLinkDevice {
         public let bleFirmwareVersion: BLEFirmwareVersion?
 
         public let radioFirmwareVersion: RadioFirmwareVersion?
-        
-        public let fw_hw: String?
     }
 
     public func getStatus(_ completion: @escaping (_ status: Status) -> Void) {
@@ -170,8 +146,7 @@ extension RileyLinkDevice {
                 lastIdle: lastIdle,
                 name: self.name,
                 bleFirmwareVersion: self.bleFirmwareVersion,
-                radioFirmwareVersion: self.radioFirmwareVersion,
-                fw_hw: self.fw_hw
+                radioFirmwareVersion: self.radioFirmwareVersion
             ))
         }
     }
@@ -320,22 +295,9 @@ extension RileyLinkDevice {
 
 
 extension RileyLinkDevice: PeripheralManagerDelegate {
-    func peripheralManager(_ manager: PeripheralManager, didUpdateNotificationStateFor characteristic: CBCharacteristic) {
-        add(log: "didUpdate: \(characteristic.uuid.uuidString)")
-        switch OrangeServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString) {
-        case .orange, .orangeNotif:
-            manager.writePsw = true
-            orangeWritePwd()
-        default:
-            break
-        }
-        log.debug("Did didUpdateNotificationStateFor %@", characteristic)
-    }
-    
     // This is called from the central's queue
     func peripheralManager(_ manager: PeripheralManager, didUpdateValueFor characteristic: CBCharacteristic) {
         log.debug("Did UpdateValueFor %@", characteristic)
-        add(log: "Did UpdateValueFor: \(characteristic.uuid.uuidString), value: \(characteristic.value?.hexadecimalString ?? "")")
         switch MainServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString) {
         case .data?:
             guard let value = characteristic.value, value.count > 0 else {
@@ -388,19 +350,6 @@ extension RileyLinkDevice: PeripheralManagerDelegate {
         case .customName?, .firmwareVersion?, .ledMode?, .none:
             break
         }
-        
-        switch OrangeServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString) {
-        case .orange, .orangeNotif:
-            guard let data = characteristic.value, data.count > 5 else { return }
-            if data.first == 9 {
-                if data[1] == 0xAA {
-                    fw_hw = "FW\(data[2]).\(data[3])/HW\(data[4]).\(data[5])"
-                    NotificationCenter.default.post(name: .DeviceFW_HWChange, object: self)
-                }
-            }
-        default:
-            break
-        }
     }
 
     func peripheralManager(_ manager: PeripheralManager, didReadRSSI RSSI: NSNumber, error: Error?) {
@@ -427,23 +376,11 @@ extension RileyLinkDevice: PeripheralManagerDelegate {
 
         let radioVersionString = try manager.readRadioFirmwareVersion(timeout: 1, responseType: bleFirmwareVersion?.responseType ?? .buffered)
         radioFirmwareVersion = RadioFirmwareVersion(versionString: radioVersionString)
-        
-        try manager.setOrangeNotifyOn()
     }
 }
 
 
 extension RileyLinkDevice: CustomDebugStringConvertible {
-    
-    public func add(log: String) {
-        os_unfair_lock_lock(&lock)
-        if self.logs.count > 10000 {
-            self.logs.removeLast(1000)
-        }
-        self.logs.append("\(Date())\n\(log)\n")
-        os_unfair_lock_unlock(&lock)
-    }
-    
     public var debugDescription: String {
         os_unfair_lock_lock(&lock)
         let lastIdle = self.lastIdle
@@ -461,9 +398,7 @@ extension RileyLinkDevice: CustomDebugStringConvertible {
             "* radioFirmware: \(String(describing: radioFirmwareVersion))",
             "* bleFirmware: \(String(describing: bleFirmwareVersion))",
             "* peripheralManager: \(manager)",
-            "* sessionQueue.operationCount: \(sessionQueue.operationCount)",
-            "* logs: \(logs)",
-            "* manager logs: \(manager.logString)"
+            "* sessionQueue.operationCount: \(sessionQueue.operationCount)"
         ].joined(separator: "\n")
     }
 }
@@ -488,6 +423,4 @@ extension Notification.Name {
     public static let DeviceRSSIDidChange = Notification.Name(rawValue: "com.rileylink.RileyLinkBLEKit.RSSIDidChange")
 
     public static let DeviceTimerDidTick = Notification.Name(rawValue: "com.rileylink.RileyLinkBLEKit.TimerTickDidChange")
-    
-    public static let DeviceFW_HWChange = Notification.Name(rawValue: "com.rileylink.RileyLinkBLEKit.DeviceFW_HWChange")
 }
