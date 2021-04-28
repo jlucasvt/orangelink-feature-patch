@@ -1,6 +1,6 @@
 # OrangeLink Loop/FreeAPS Feature Patch 2.5
 ### What does this patch do?
-Features Require Orangelink Firmware v2.5 
+Features Require Orangelink Firmware v2.5 April 27 2021 (Update your OL Firmware First!)
 https://getrileylink.org/product/orangelink#firmware
 
 
