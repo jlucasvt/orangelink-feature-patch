@@ -23,7 +23,7 @@ https://getrileylink.org/product/orangelink#firmware
 * Option 4 will Patch an existing Workspace Build Folder
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jlucasvt/orangelink-feature-patch/main/OrangeLink-DL-Workspace-and-Patch.sh)"
+/bin/bash -c "$(curl -fsSL https://tinyurl.com/olpatchfiles)"
 ```
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/termpic.png?raw=true)
 
