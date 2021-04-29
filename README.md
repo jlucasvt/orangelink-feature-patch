@@ -5,20 +5,20 @@ https://getrileylink.org/product/orangelink#firmware
 
 
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
-* Adds Battery Level Status % Display
-* Adds OrangeLink Firmware and Hardware Version Listing
-* Adds % Setting for Low Battery Alert (buzz enable/disable)
-* Adds Voltage Setting for Low Voltage Alert (buzz enable/disable)
-* Adds Toggle to Enable/Disable Connection State 10 second Blinking LED
-* Adds Toggle to Enable/Disable Connection State Vibration Alert
-* Adds Test commands to test Yellow and Red LED’s, and the Haptic Motor
+* Adds Battery Level Status Display (%)
+* Adds OrangeLink Firmware (FW) and Hardware (HW) Version Listing
+* Adds Battery Voltage (volts)
+* Adds % Setting and Alert for Low Battery (Enable/Disable)
+* Adds Voltage Setting for Low Voltage Alert (Enable/Disable)
+* Adds Toggle to Enable/Disable Connection State 10 Second Blinking LED
+* Adds Toggle to Enable/Disable Connection State Disconnect Vibration Alert
+* Adds Test Switches to test Yellow and Red LED’s, and the Haptic Motor
 
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 
 ### How do I get it?
-First Please update your OrangeLink to the latest Firmware..
-
-Copy Paste the following script reference into your MacOS "Terminal.app".
+1. Update your OrangeLink to the latest Firmware Here: https://getrileylink.org/product/orangelink#firmware
+2. Copy Paste the following script reference into your MacOS "Terminal.app".
 * Options 1,2,3 will Download a new Workspace and Patch it
 * Option 4 will Patch an existing Workspace Build Folder
 
