@@ -19,12 +19,14 @@ https://getrileylink.org/product/orangelink#firmware
 ### How do I get it?
 1. Update your OrangeLink to the latest Firmware Here: https://getrileylink.org/product/orangelink#firmware
 2. Copy Paste the following script reference into your MacOS "Terminal.app".
-* Options 1,2,3 will Download a new Workspace and Patch it
-* Option 4 will Patch an existing Workspace Build Folder
 
 ```
 /bin/bash -c "$(curl -fsSL https://tinyurl.com/olpatchfiles)"
 ```
+
+* Options 1,2,3 will Download a new Workspace and Patch it
+* Option 4 will Patch an existing Workspace Build Folder
+
 ![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/termpic.png?raw=true)
 
 ### What will the script do?
