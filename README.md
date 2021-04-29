@@ -42,5 +42,5 @@ https://getrileylink.org/product/orangelink#firmware
 
 ### Credits:
 * Loop-n-Learn Group for providing a starting place for the Bash Script.
-* Vic Wu and the BubbleDev Team for all his work and the patch 
-Original Code Repo : https://github.com/bubbledevteam/rileylink_ios/tree/dev_orange_pre
+* Vic Wu and the BubbleDev Team for all their hard work making this happen. 
+* Original Source Code Repo : https://github.com/bubbledevteam/rileylink_ios/tree/dev_orange_pre
