@@ -33,6 +33,14 @@ https://getrileylink.org/product/orangelink#firmware
 3. Patch the Workspace with the OrangeLink Feature Patch
 4. Launch XCode so you can select your Signing Targets.
 
+### Where do I Sign Targets and Which Build Scheme should I use?
+1. Click on "Loop" in the Code Navigator on the Left of XCode and you will see the targets to sign with your developer key.
+2. You MUST use the "Loop (Workspace)" scheme when building to your phone NOT the "Loop" scheme.  (I have spoken)...
+
+![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Targets-Workspace.png?raw=true)
+
+
 ### Credits:
 * Loop-n-Learn Group for providing a starting place for the Bash Script.
-* Vic Wu for all his work and the dev teams work for the patch.
+* Vic Wu and the BubbleDev Team for all his work and the patch 
+Original Code Repo : https://github.com/bubbledevteam/rileylink_ios/tree/dev_orange_pre
