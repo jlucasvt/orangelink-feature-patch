@@ -8,8 +8,8 @@ https://getrileylink.org/product/orangelink#firmware
 * Adds Battery Level Status Display (%)
 * Adds OrangeLink Firmware (FW) and Hardware (HW) Version Listing
 * Adds Battery Voltage (volts)
-* Adds % Setting and Alert for Low Battery (Enable/Disable)
-* Adds Voltage Setting for Low Voltage Alert (Enable/Disable)
+* Adds % Setting and Alert for Low Battery (Off or Set Point)
+* Adds Voltage Setting and Alert for Low Voltage Alert (Off or Set Point)
 * Adds Toggle to Enable/Disable Connection State 10 Second Blinking LED
 * Adds Toggle to Enable/Disable Connection State Disconnect Vibration Alert
 * Adds Test Switches to test Yellow and Red LED’s, and the Haptic Motor
