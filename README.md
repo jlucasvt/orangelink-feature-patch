@@ -14,8 +14,8 @@ https://getrileylink.org/product/orangelink#firmware
 * Adds Toggle to Enable/Disable Connection State Disconnect Vibration Alert
 * Adds Test Switches to test Yellow and Red LED’s, and the Haptic Motor
 
-![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
-![alt text](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
+![Features](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
+![Alerts](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
 
 ### How do I get it?
 1. Update your OrangeLink to the latest Firmware Here: https://getrileylink.org/product/orangelink#firmware
