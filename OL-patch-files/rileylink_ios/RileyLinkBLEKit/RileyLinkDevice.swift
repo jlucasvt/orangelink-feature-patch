@@ -77,6 +77,11 @@ extension RileyLinkDevice {
     public var name: String? {
         return manager.peripheral.name
     }
+    
+    public var isOrangePro: Bool {
+        //name?.lowercased() == "orangepro"
+        return true
+    }
 
     public var deviceURI: String {
         return "rileylink://\(name ?? peripheralIdentifier.uuidString)"
@@ -136,6 +141,11 @@ extension RileyLinkDevice {
     public func orangeReadVDC() {
         add(log: "orangeReadVDC")
         manager.orangeReadVDC()
+    }
+    
+    public func findDevices() {
+        add(log: "findDevices")
+        manager.findDevices()
     }
     
     public func enableBLELEDs() {
