@@ -20,6 +20,24 @@ public class RileyLinkSwitch: UISwitch {
     public var section: Int = 0
 }
 
+public class RileyLinkCell: UITableViewCell {
+    public let switchView = RileyLinkSwitch()
+    
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(switchView)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        switchView.frame = CGRect(x: frame.width - 51 - 20, y: (frame.height - 31) / 2, width: 51, height: 31)
+    }
+}
+
 public class RileyLinkDeviceTableViewController: UITableViewController {
 
     private let log = OSLog(category: "RileyLinkDeviceTableViewController")
@@ -67,7 +85,6 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
             cellForRow(.battery)?.setDetailBatteryLevel(battery)
         }
     }
-    
     
     private var frequency: Measurement<UnitFrequency>? {
         didSet {
@@ -191,8 +208,13 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
             self.device.orangeSetAction(index: index, open: open)
         }
     }
-
     
+    func findDevices() {
+        device.runSession(withName: "Find Devices") { (session) in
+            self.device.findDevices()
+        }
+    }
+
     func updateFrequency() {
 
         device.runSession(withName: "Get base frequency") { (session) in
@@ -223,30 +245,30 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
         
         notificationObservers = [
             center.addObserver(forName: .DeviceNameDidChange, object: device, queue: mainQueue) { [weak self] (note) -> Void in
-                if let cell = self?.cellForRow(.customName) {
-                    cell.detailTextLabel?.text = self?.device.name
-                }
-
-                self?.title = self?.device.name
-            },
+            if let cell = self?.cellForRow(.customName) {
+                cell.detailTextLabel?.text = self?.device.name
+            }
+            self?.title = self?.device.name
+            self?.tableView.reloadData()
+        },
             center.addObserver(forName: .DeviceConnectionStateDidChange, object: device, queue: mainQueue) { [weak self] (note) -> Void in
-                if let cell = self?.cellForRow(.connection) {
-                    cell.detailTextLabel?.text = self?.device.peripheralState.description
-                }
-            },
+            if let cell = self?.cellForRow(.connection) {
+                cell.detailTextLabel?.text = self?.device.peripheralState.description
+            }
+        },
             center.addObserver(forName: .DeviceRSSIDidChange, object: device, queue: mainQueue) { [weak self] (note) -> Void in
-                self?.bleRSSI = note.userInfo?[RileyLinkDevice.notificationRSSIKey] as? Int
-
-                if let cell = self?.cellForRow(.rssi), let formatter = self?.integerFormatter {
-                    cell.setDetailRSSI(self?.bleRSSI, formatter: formatter)
-                }
-            },
+            self?.bleRSSI = note.userInfo?[RileyLinkDevice.notificationRSSIKey] as? Int
+            
+            if let cell = self?.cellForRow(.rssi), let formatter = self?.integerFormatter {
+                cell.setDetailRSSI(self?.bleRSSI, formatter: formatter)
+            }
+        },
             center.addObserver(forName: .DeviceDidStartIdle, object: device, queue: mainQueue) { [weak self] (note) in
-                self?.updateDeviceStatus()
-            },
+            self?.updateDeviceStatus()
+        },
             center.addObserver(forName: .DeviceFW_HWChange, object: device, queue: mainQueue) { [weak self] (note) in
-                self?.updateDeviceStatus()
-            },
+            self?.updateDeviceStatus()
+        },
         ]
     }
     
@@ -355,6 +377,7 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
         case yellow
         case red
         case shake
+        case orangePro
     }
     
     private enum ConfigureCommandRow: Int, CaseCountable {
@@ -379,7 +402,7 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
         case .device:
             return DeviceRow.count
         case .commands:
-            return CommandRow.count
+            return CommandRow.count - (device.isOrangePro ? 0 : 1)
         case .configureCommand:
             return ConfigureCommandRow.count
         case .alert:
@@ -415,6 +438,8 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
                     orangeAction(index: 5)
                 }
                 shakeOn = sender.isOn
+            default:
+                break
             }
         case .configureCommand:
             switch ConfigureCommandRow(rawValue: sender.index)! {
@@ -431,10 +456,6 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
-    }
-    
     var yellowOn = false
     var redOn = false
     var shakeOn = false
@@ -443,25 +464,22 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
     var voltage = ""
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
+        let cell: RileyLinkCell
 
-        if let reusableCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) {
+        if let reusableCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as? RileyLinkCell {
             cell = reusableCell
         } else {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: CellIdentifier)
-            let switchView = RileyLinkSwitch()
-            switchView.tag = 10000
-            switchView.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
-            switchView.frame = CGRect(x: tableView.frame.width - 51 - 20, y: 7, width: 51, height: 31)
-            cell.contentView.addSubview(switchView)
+            cell = RileyLinkCell(style: .value1, reuseIdentifier: CellIdentifier)
+            cell.switchView.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
         }
         
-        let switchView = cell.contentView.viewWithTag(10000) as? RileyLinkSwitch
-        switchView?.isHidden = true
-        switchView?.index = indexPath.row
-        switchView?.section = indexPath.section
+        let switchView = cell.switchView
+        switchView.isHidden = true
+        switchView.index = indexPath.row
+        switchView.section = indexPath.section
         
         cell.accessoryType = .none
+        cell.detailTextLabel?.text = nil
 
         switch Section(rawValue: indexPath.section)! {
         case .device:
@@ -524,31 +542,34 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
             
             switch CommandRow(rawValue: indexPath.row)! {
             case .yellow:
-                switchView?.isHidden = false
+                switchView.isHidden = false
                 cell.accessoryType = .none
-                switchView?.isOn = yellowOn
+                switchView.isOn = yellowOn
                 cell.textLabel?.text = NSLocalizedString("Lighten Yellow LED", comment: "The title of the cell showing Lighten Yellow LED")
             case .red:
-                switchView?.isHidden = false
+                switchView.isHidden = false
                 cell.accessoryType = .none
-                switchView?.isOn = redOn
+                switchView.isOn = redOn
                 cell.textLabel?.text = NSLocalizedString("Lighten Red LED", comment: "The title of the cell showing Lighten Red LED")
             case .shake:
-                switchView?.isHidden = false
-                switchView?.isOn = shakeOn
+                switchView.isHidden = false
+                switchView.isOn = shakeOn
                 cell.accessoryType = .none
                 cell.textLabel?.text = NSLocalizedString("Test Vibrator", comment: "The title of the cell showing Test Vibrator")
+            case .orangePro:
+                cell.textLabel?.text = NSLocalizedString("Find Devices", comment: "The title of the cell showing ORL")
+                cell.detailTextLabel?.text = nil
             }
         case .configureCommand:
             switch ConfigureCommandRow(rawValue: indexPath.row)! {
             case .led:
-                switchView?.isHidden = false
-                switchView?.isOn = ledOn
+                switchView.isHidden = false
+                switchView.isOn = ledOn
                 cell.accessoryType = .none
                 cell.textLabel?.text = NSLocalizedString("Enable Connection State LED", comment: "The title of the cell showing Stop Vibrator")
             case .vibration:
-                switchView?.isHidden = false
-                switchView?.isOn = vibrationOn
+                switchView.isHidden = false
+                switchView.isOn = vibrationOn
                 cell.accessoryType = .none
                 cell.textLabel?.text = NSLocalizedString("Enable Connection State Vibrator", comment: "The title of the cell showing Stop Vibrator")
             }
@@ -608,7 +629,12 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
                 break
             }
         case .commands:
-            break
+            switch CommandRow(rawValue: indexPath.row)! {
+            case .orangePro:
+                findDevices()
+            default:
+                break
+            }
         case .configureCommand:
             break
         case .alert:
