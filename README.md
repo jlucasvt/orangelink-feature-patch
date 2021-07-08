@@ -1,10 +1,5 @@
 # OrangeLink Loop/FreeAPS Feature Patch 3.0
 ### What does this patch do?
-Features Require
-Orangelink Firmware v2.5 April 27 2021
-Orangelink Pro Firmware v1.0 July 9 2021
-https://getrileylink.org/product/orangelink#firmware
-
 
 * Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status Display (%)
@@ -15,7 +10,7 @@ https://getrileylink.org/product/orangelink#firmware
 * Adds Toggle to Enable/Disable Connection State 10 Second Blinking LED
 * Adds Toggle to Enable/Disable Connection State Disconnect Vibration Alert
 * Adds Test Switches to test Yellow and Red LED’s, and the Haptic Motor
-* Adds FInd Device Command for use with OrangeLink Pro
+* Adds [FInd Device] Command (OrangeLink Pro Only)
 
 ![Features](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 ![Alerts](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
