@@ -100,17 +100,6 @@ extension PeripheralManager.Configuration {
     }
 }
 
-
-fileprivate extension CBPeripheral {
-    func getCharacteristicWithUUID(_ uuid: MainServiceCharacteristicUUID, serviceUUID: RileyLinkServiceUUID = .main) -> CBCharacteristic? {
-        guard let service = services?.itemWithUUID(serviceUUID.cbUUID) else {
-            return nil
-        }
-
-        return service.characteristics?.itemWithUUID(uuid.cbUUID)
-    }
-}
-
 fileprivate extension CBPeripheral {
     func getBatteryCharacteristic(_ uuid: BatteryServiceCharacteristicUUID, serviceUUID: RileyLinkServiceUUID = .battery) -> CBCharacteristic? {
         guard let service = services?.itemWithUUID(serviceUUID.cbUUID) else {
@@ -123,6 +112,18 @@ fileprivate extension CBPeripheral {
 
 fileprivate extension CBPeripheral {
     func getOrangeCharacteristic(_ uuid: OrangeServiceCharacteristicUUID, serviceUUID: RileyLinkServiceUUID = .orange) -> CBCharacteristic? {
+        guard let service = services?.itemWithUUID(serviceUUID.cbUUID) else {
+            return nil
+        }
+
+        return service.characteristics?.itemWithUUID(uuid.cbUUID)
+    }
+}
+
+
+
+fileprivate extension CBPeripheral {
+    func getCharacteristicWithUUID(_ uuid: MainServiceCharacteristicUUID, serviceUUID: RileyLinkServiceUUID = .main) -> CBCharacteristic? {
         guard let service = services?.itemWithUUID(serviceUUID.cbUUID) else {
             return nil
         }
@@ -397,6 +398,21 @@ extension PeripheralManager {
         }
         if mode == .off, mode == .shakeOff {
             orangeClose()
+        }
+    }
+    
+    func findDevices() {
+        perform { [self] (manager) in
+            do {
+                guard let characteristic = peripheral.getOrangeCharacteristic(.orange) else {
+                    throw PeripheralManagerError.unknownCharacteristic
+                }
+                let value = Data([0xdd, 0x04])
+                add(log: "write: \(value.hexadecimalString)")
+                try writeValue(value, for: characteristic, type: .withResponse, timeout: PeripheralManager.expectedMaxBLELatency)
+            } catch (_) {
+                add(log: "findDevices failed")
+            }
         }
     }
     
