@@ -170,6 +170,7 @@ extension PeripheralManager {
 
         for (serviceUUID, characteristicUUIDs) in configuration.notifyingCharacteristics {
             guard let service = peripheral.services?.itemWithUUID(serviceUUID) else {
+                throw PeripheralManagerError.unknownCharacteristic
                 continue
             }
 
@@ -178,6 +179,7 @@ extension PeripheralManager {
             for characteristicUUID in characteristicUUIDs {
                 add(log: "characteristicUUID: \(characteristicUUID.uuidString)")
                 guard let characteristic = service.characteristics?.itemWithUUID(characteristicUUID) else {
+                    throw PeripheralManagerError.unknownCharacteristic
                     continue
                 }
 
