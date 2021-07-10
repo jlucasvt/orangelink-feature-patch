@@ -32,7 +32,7 @@
 1. Prompt you to choose a Workspace Build
 2. Download the selected Workspace to the ~Home\Downloads\BuildX-DATE\ folder
 3. Patch the Workspace with the OrangeLink Feature Patch
-4. Launch XCode so you can select your Signing Targets.
+4. Launch XCode so you can select your Signing Targets and change the Build Scheme to Loop (Workspace).
 
 ### Where do I Sign Targets and Which Build Scheme should I use?
 1. Click on "Loop" in the Code Navigator on the Left of XCode and you will see the targets to sign with your developer key.
