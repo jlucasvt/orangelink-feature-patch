@@ -1,7 +1,5 @@
-# OrangeLink Loop/FreeAPS Feature Patch 3.0
+# OrangeLink Loop/FreeAPS Feature Patch 3.1
 ### What does this patch do?
-
-* Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 * Adds Battery Level Status Display (%)
 * Adds OrangeLink Firmware (FW) and Hardware (HW) Version Listing
 * Adds Battery Voltage (volts)
@@ -10,7 +8,9 @@
 * Adds Toggle to Enable/Disable Connection State 10 Second Blinking LED
 * Adds Toggle to Enable/Disable Connection State Disconnect Vibration Alert
 * Adds Test Switches to test Yellow and Red LED’s, and the Haptic Motor
-* Adds [FInd Device] Command (OrangeLink Pro Only)
+* Adds [Find Device] Command (OrangeLink Pro Only)
+* Fix for EMALink Communications Error when using Feature Patch
+* Disables MySentry Packets to increase OrangeLink battery life with Medtronic x23/x54 pumps
 
 ![Features](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 ![Alerts](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
@@ -44,4 +44,4 @@
 ### Credits:
 * Loop-n-Learn Group for providing a starting place for the Bash Script.
 * Vic Wu and the BubbleDev Team for all their hard work making this happen. 
-* Original Source Code Repo : https://github.com/bubbledevteam/rileylink_ios/tree/dev_orange_pre
+* Original Source Code Repo : https://github.com/bubbledevteam/rileylink_ios/tree/orange_freeaps
