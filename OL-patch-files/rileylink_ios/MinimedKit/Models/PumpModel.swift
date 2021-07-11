@@ -51,6 +51,7 @@ public enum PumpModel: String {
     }
     
     public var hasMySentry: Bool {
+        //TODO: disable MySentry when using OL return generation >= 23
         return false
     }
     

@@ -79,7 +79,7 @@ extension RileyLinkDevice {
     }
     
     public var isOrangePro: Bool {
-        //name?.lowercased() == "orangepro"
+        //TODO: Determine Orange vs Riley
         return true
     }
 
