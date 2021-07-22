@@ -16,7 +16,7 @@
 ![Alerts](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
 
 ### How do I get it?
-1. Update your OrangeLink or OrangeLink Pro to the latest Firmware Here: https://getrileylink.org/product/orangelink#firmware
+1. Update your OrangeLink or OrangeLink Pro to the latest Firmware Here: https://getrileylink.org/orangelink-firmware
 2. Copy Paste the following script reference into your MacOS "Terminal.app" and press {return} to run the script.
 
 ```
