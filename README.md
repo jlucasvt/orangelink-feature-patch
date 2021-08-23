@@ -1,5 +1,5 @@
 ### How do I get it?
-1. The Loop Patch Features are now incorporated into Loop as of Release 2.2.5 
+1. The Loop Patch Features are now incorporated into Loop as of Release 2.2.5 (Aug 22 2021) Update to the latest version of Loop.
 https://github.com/LoopKit/Loop/releases/
 
 
