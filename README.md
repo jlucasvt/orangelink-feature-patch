@@ -1,4 +1,8 @@
-# OrangeLink Loop/FreeAPS Feature Patch 3.1
+### How do I get it?
+1. The Loop Patch Features are now incorporated into Loop as of Release 2.2.5 
+https://github.com/LoopKit/Loop/releases/
+
+
 ### What does this patch do?
 * Adds Battery Level Status Display (%)
 * Adds OrangeLink Firmware (FW) and Hardware (HW) Version Listing
@@ -14,8 +18,3 @@
 
 ![Features](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Features.jpeg?raw=true)
 ![Alerts](https://github.com/jlucasvt/orangelink-feature-patch/raw/main/Alerts.jpeg?raw=true)
-
-### How do I get it?
-1. The Loop Patch Features are now incorporated into Loop as of Release 2.2.5 
-https://github.com/LoopKit/Loop/releases/
-
